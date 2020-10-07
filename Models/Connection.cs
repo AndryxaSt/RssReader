@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Xml.Serialization;
+using System.Xml;
 using System.IO;
 using System.Net;
+using System.ServiceModel.Syndication;
 
 
 
@@ -12,59 +13,32 @@ namespace RssReader.Models
 {
     public class Connection
     {
-        public Subscription.Rss Deserialize(string url)
+        public IEnumerable<Subscription> GetRss(string url)
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(Subscription.Rss));
-            Subscription.Rss newItem;
+            List<Subscription> subscriptions;
 
-            WebRequest request = WebRequest.Create(url);
+            XmlReader FeedReader = XmlReader.Create(url);
+            SyndicationFeed Channel = SyndicationFeed.Load(FeedReader);
 
-            try
+            if (Channel != null)
             {
-                using (WebResponse response = request.GetResponse())
+                subscriptions = new List<Subscription>();
+
+                foreach (SyndicationItem RSI in Channel.Items)
                 {
-                    newItem = (Subscription.Rss)formatter.Deserialize(response.GetResponseStream());
-                    return newItem;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public List<Subscription.Rss> Deserialize(List<Subscription> subscriptions)
-        {
-            List<Subscription.Rss> RssList = new List<Subscription.Rss>();
-
-            foreach (var subscription in subscriptions)
-            {
-                XmlSerializer formatter = new XmlSerializer(typeof(Subscription.Rss));
-                Subscription.Rss newItem;
-
-                WebRequest request = WebRequest.Create(subscription.Url);
-
-                try
-                {
-                    using (WebResponse response = request.GetResponse())
+                    subscriptions.Add(new Subscription()
                     {
-                        newItem = (Subscription.Rss)formatter.Deserialize(response.GetResponseStream());
-                        RssList.Add(newItem);
-                    }
+                        Title = RSI.Title.Text,
+                        ImgSrc = RSI.Links[1].Uri.AbsoluteUri,
+                        Discription = RSI.Summary.Text,
+                        Url = RSI.Id,
+                        PubDate = RSI.PublishDate.DateTime
+                    });
 
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                return subscriptions;
             }
-
-            return RssList;
-            
+            return new List<Subscription>();
         }
-
     }
-
-
 }

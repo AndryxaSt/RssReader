@@ -34,7 +34,7 @@ namespace RssReader.Controllers
                 string userId = User.Identity.GetUserId();
                 var currentUser = db.Users.Where(u => u.Id == userId).Include(s => s.Subscriptions).FirstOrDefault();
 
-                return View(new Connection().Deserialize(currentUser.Subscriptions.ToList<Subscription>()));
+                return View(new Connection().GetRss(/*currentUser.Subscriptions.ToList<Subscription>()*/"https://www.liga.net/tech/gadgets/rss.xml"));
             }
         }
     }
