@@ -13,20 +13,20 @@ namespace RssReader.Models
 {
     public class Connection
     {
-        public IEnumerable<Subscription> GetRss(string url)
+        public IEnumerable<News> GetRss(string url)
         {
-            List<Subscription> subscriptions;
+            List<News> news;
 
             XmlReader FeedReader = XmlReader.Create(url);
             SyndicationFeed Channel = SyndicationFeed.Load(FeedReader);
 
             if (Channel != null)
             {
-                subscriptions = new List<Subscription>();
+                news = new List<News>();
 
                 foreach (SyndicationItem RSI in Channel.Items)
                 {
-                    subscriptions.Add(new Subscription()
+                    news.Add(new News()
                     {
                         Title = RSI.Title.Text,
                         ImgSrc = RSI.Links[1].Uri.AbsoluteUri,
@@ -36,9 +36,9 @@ namespace RssReader.Models
                     });
 
                 }
-                return subscriptions;
+                return news;
             }
-            return new List<Subscription>();
+            return new List<News>();
         }
     }
 }
