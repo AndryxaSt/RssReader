@@ -1,0 +1,31 @@
+﻿@model RssReader.Models.Subscription
+
+
+@using (Html.BeginForm("Add", "Subscription", FormMethod.Post, new { @class = "form-group" }))
+{
+
+    <div class="row">
+        <div class="col-12">
+
+            <div class="form-group">
+                <label for="title">Название</label>
+                <div>
+                    @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @id = "title", placeholder = "Введите название" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="url">Url</label>
+                <div>
+                    @Html.TextBoxFor(model => model.Url, new { @class = "form-control", @id = "url", placeholder = "Введите Url" })
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-success btn-block" role="button">Добавить</button>
+            </div>
+
+        </div>
+    </div>
+}
+

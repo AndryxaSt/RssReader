@@ -1,0 +1,165 @@
+﻿@model RssReader.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title RssReader</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-group " }))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="row">
+            <div class="col-4"></div>
+
+            <div class="col-4">
+                <h4>Регистрация пользователя</h4>
+                <br>
+
+                @Html.ValidationSummary(false)
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="inputName">Имя</label>
+                        <div>
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @id = "inputName", placeholder = "Введите имя" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="inputEmail">Электронный адрес</label>
+                        <div>
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @id = "inputEmail", placeholder = "Введите Email" })<br>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="inputPassword">Пароль</label>
+                        <div>
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @id = "inputPassword", placeholder = "Введите пароль" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="inputConfirmPassword">Подтвердить пароль</label>
+                        <div>
+                            @Html.PasswordFor(model => model.PasswordConfirm, new { @class = "form-control", @id = "inputConfirmPassword", placeholder = "Повторите пароль" })<br>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                    <div>
+                        <input type="submit" class="btn btn-success btn-block" value="Зарегистрировать" />
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    }
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+
+</html>
+
+@*@model RssReader.Models.RegisterModel
+    @{
+        ViewBag.Title = "Register";
+    }
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title RssReader</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+
+    <body>
+
+
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-4"></div>
+
+                    <div class="col-4">
+                        <h4>Регистрация пользователя</h4>
+                        <br>
+                        @Html.ValidationSummary(false)
+                        <div class="row">
+                            <div>
+                                Имя
+                                <div>
+                                    @Html.TextBoxFor(model => model.Name)
+                                </div>
+                            </div>
+
+                            <div>
+                                Электронный адрес
+                                <div>
+                                    @Html.TextBoxFor(model => model.Email)
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class="row">
+                            <div>
+                                Пароль
+                                <div>
+                                    @Html.PasswordFor(model => model.Password)
+                                </div>
+                            </div>
+
+                            <div>
+                                Подтвердить пароль
+                                <div>
+                                    @Html.PasswordFor(model => model.PasswordConfirm)
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div>
+                            <div>
+                                <input type="submit" value="Зарегистрировать" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+    </body>
+    </html>*@

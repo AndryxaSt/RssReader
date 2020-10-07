@@ -1,0 +1,16 @@
+﻿@model IList<RssReader.Models.Subscription>
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+@foreach (var subsription in Model)
+{
+    <tr>
+        <td>@subsription.Title</td>
+        <td>@subsription.Url</td>
+        <td><input type="button" title="Delete" value="X" onclick="location.href='@Url.Action("Delete", "Subscription", subsription)'" /></td>
+    </tr>
+}

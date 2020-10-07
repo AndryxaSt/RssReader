@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RssReader.Models.Subscription.Rss>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@*@foreach (var rss in Model)
+    {<h2>@rss.Channel.Title</h2>
+
+    <img src="@rss.Channel.Image.Url">
+
+    foreach (var item in rss.Channel.Item)
+    {
+        <tr>
+            <td><p><a href="@item.Link"><h3>@item.Title</h3></a></p><
+    /td>
+            <td><p>@item.Description</p></td>
+            <td><p><img src="@item.Enclosure.Url"></p></td>
+        </tr><asp:checkbox text="text" runat="server" />
+    }
+
+    }*@
+<div>
+
+    <div class="card-columns">
+        @foreach (var rss in Model)
+        {
+            foreach (var item in rss.Channel.Item)
+            {
+                <div class="card border-light shadow p-3 mb-5 bg-white rounded">
+                    <img class="card-img-top" src="@item.Enclosure.Url " alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="@item.Link">@item.Title</a></h5>
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-text text-right"><small class="text-muted">@item.PubDate</small></p>
+                        
+                    </div>
+
+                </div>
+            }
+        }
+
+
+    </div>
+</div>
