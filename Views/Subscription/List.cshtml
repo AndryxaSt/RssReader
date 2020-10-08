@@ -19,8 +19,9 @@
 
                 <thead>
                     <tr>
-                        <th>Title</th>
+                        <th>Название</th>
                         <th>Url</th>
+                        <th>Категория</th>
                         <th><button type="button" class="btn btn-light" data-toggle="modal" data-target="#addModal">Добавить подписку</button></th>
                     </tr>
                 </thead>
@@ -32,6 +33,7 @@
                             <tr>
                                 <td>@subscription.Title</td>
                                 <td>@subscription.Url</td>
+                                <td>@subscription.Category</td>
                                 <td>@Html.ActionLink("Отписаться", "Delete", "Subscription", subscription, new { @class = "btn btn-light" })</td>
 
                             </tr>
