@@ -1,28 +1,24 @@
-﻿@model IEnumerable<RssReader.Models.News>
+﻿@model  IEnumerable<IEnumerable<RssReader.Models.News>>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <div>
-
-    <div class="card-columns">
-        @foreach (var news in Model)
-        {
-
-            <div class="card border-light shadow p-3 mb-5 bg-white rounded">
-                <img class="card-img-top" src="@news.ImgSrc" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="@news.Url">@news.Title</a></h5>
-                    <p class="card-text">@news.Discription</p>
-                    <p class="card-text text-right"><small class="text-muted">23423@{news.PubDate.ToShortTimeString();}</small></p>
-
+    @foreach (var subs in Model)
+    {
+        <div class="card-columns">
+            @foreach (var news in subs)
+            {
+                <div class="card border-light shadow p-3 mb-5 bg-white rounded">
+                    <img class="card-img-top" src="@news.ImgSrc" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="@news.Url">@news.Title</a></h5>
+                        <p class="card-text">@news.Discription</p>
+                        <p class="card-text text-right"><small class="text-muted">@news.PubDate</small></p>
+                    </div>
                 </div>
-
-            </div>
-
-}
-
-
-    </div>
+            }
+        </div>
+    }
 </div>

@@ -9,10 +9,9 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-md navbar-light bg-light">
 
-        <a class="navbar-brand" href="#">RssReader</a>
+        <a class="navbar-brand" href="~/Home/Index">RssReader</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,10 +23,10 @@
                     <a href="~/Home/Index" class="btn btn-light" role="button">Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a href="~/Home/News" class="btn btn-light" role="button">Новости</a>
+                    <a href="~/Home/News" class="btn btn-light" role="button">Все новости</a>
                 </li>
                 <li class="nav-item">
-                    <a href="~/Subscription/List" class="btn btn-light" role="button">Мои подписки<span class="badge">2</span></a>
+                    <a href="~/Subscription/List" class="btn btn-light" role="button">Мои подписки<span class="badge"></span></a>
                 </li>
             </ul>
 
@@ -38,6 +37,7 @@
             </ul>
         </div>
     </nav>
+   
 
     @RenderBody()
 

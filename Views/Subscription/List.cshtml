@@ -10,9 +10,6 @@
     <div class="container">
         <h2>Подписки</h2>
 
-        
-        
-
         <div class="table-responsive">
 
             <table class="table table-hover">
@@ -35,7 +32,6 @@
                                 <td>@subscription.Url</td>
                                 <td>@subscription.Category</td>
                                 <td>@Html.ActionLink("Отписаться", "Delete", "Subscription", subscription, new { @class = "btn btn-light" })</td>
-
                             </tr>
                         }
                     }
@@ -58,7 +54,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               
             </div>
         </div>
     </div>
