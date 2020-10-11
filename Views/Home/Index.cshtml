@@ -1,5 +1,62 @@
-﻿
+﻿@model IEnumerable<IEnumerable<RssReader.Models.News>>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{ int i = 1;
+
+
+    foreach (var subs in Model)
+    {
+        string ss = "asa" + i;
+
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-7 col-8 align-items-center">
+                <div class="container">
+                    <div id="@ss" class="carousel slide" data-ride="carousel">
+
+                        <ol class="carousel-indicators">
+
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://img-23.ccm2.net/MV65OgizRQ6PF9idQneYYQVLyVc=/500x/23e40ded829244a8938d729a709df304/ccm-faq/freefire.jpg" class="d-block w-100" alt="...">
+                            </div>
+
+                            @foreach (var news in subs)
+                            {
+                                <div class="carousel-item">
+                                    <div class="card border-light shadow p-3 mb-5 bg-white rounded">
+                                        <img class="card-img-top" src="@news.ImgSrc" alt="Card image">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="@news.Url">@news.Title</a></h5>
+                                            <p class="card-text">@news.Discription</p>
+                                            <p class="card-text text-right"><small class="text-muted">@news.PubDate</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+                        <a class="carousel-control-prev" href="#@ss" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+
+                        <a class="carousel-control-next" href="#@ss" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        i++;
+    }
+}

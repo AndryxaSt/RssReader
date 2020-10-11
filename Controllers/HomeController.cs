@@ -17,24 +17,32 @@ namespace RssReader.Controllers
     {
         static DataBaseContext db;
 
+        private IEnumerable<Subscription> GetAllSubscriptions ()
+        {
+            string userId = User.Identity.GetUserId();
+            var currentUserSubscriptions = db.Users.Where(u => u.Id == userId).Include(s => s.Subscriptions).FirstOrDefault().Subscriptions.ToList<Subscription>();
+            return currentUserSubscriptions;
+        }
 
         [AuthFilter]
         public ActionResult Index()
         {
-            return View();
+            using (db = new DataBaseContext())
+            {
+                var currentUserSubscriptions = GetAllSubscriptions();
 
+                return View(new Connection().GetRss(currentUserSubscriptions));
+            }
         }
 
         [AuthFilter]
         public ActionResult News()
         {
-
             using (db = new DataBaseContext())
             {
-                //string userId = User.Identity.GetUserId();
-                //var currentUser = db.Users.Where(u => u.Id == userId).Include(s => s.Subscriptions).FirstOrDefault();
+                var currentUserSubscriptions = GetAllSubscriptions();
 
-                return View(new Connection().GetRss(/*currentUser.Subscriptions.ToList<Subscription>()*/"https://www.liga.net/tech/gadgets/rss.xml"));
+                return View(new Connection().GetRss(currentUserSubscriptions));
             }
         }
     }
