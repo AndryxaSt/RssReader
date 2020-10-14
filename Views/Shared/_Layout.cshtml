@@ -9,42 +9,52 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="row justify-content-center">
+            <div class="col-10 ">
+                <nav class="navbar navbar-expand-md navbar-light bg-light">
 
-        <a class="navbar-brand" href="~/Home/Index">RssReader</a>
+                    <a class="navbar-brand" href="~/Home/Index">RssReader</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a href="~/Home/Index" class="btn btn-light" role="button">Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a href="~/Home/News" class="btn btn-light" role="button">Все новости</a>
-                </li>
-                <li class="nav-item">
-                    <a href="~/Subscription/List" class="btn btn-light" role="button">Мои подписки<span class="badge"></span></a>
-                </li>
-            </ul>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a href="~/Home/Index" class="btn btn-light" role="button">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="~/Home/News" class="btn btn-light" role="button">Все новости</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="~/Subscription/List" class="btn btn-light" role="button">Мои подписки<span class="badge"></span></a>
+                            </li>
+                        </ul>
 
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <a href="~/Account/Logout" class="btn btn-light" role="button">Logout</a>
-                </li>
-            </ul>
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="~/Account/Logout" class="btn btn-light" role="button">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
-    </nav>
-   
+    
 
-    @RenderBody()
+    <div class="row justify-content-center">
+        <div class="col-10">
+
+            @RenderBody()
 
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+        </div>
+    </div>
+
 </body>
 </html>
 

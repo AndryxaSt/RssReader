@@ -20,6 +20,7 @@ namespace RssReader.Models
 
             return inputHtml;
         }
+
         public IEnumerable<IEnumerable<News>> GetRss(IEnumerable<Subscription> subscriptions)
         {
             List<List<News>> outputSubs = new List<List<News>>();
@@ -36,7 +37,6 @@ namespace RssReader.Models
                     if (Channel != null)
                     {
                         int indexImg = -1;
-
 
                         for (int i = 0; i < Channel.Items.First().Links.Count; i++)
                         {
