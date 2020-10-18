@@ -3,12 +3,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
-
 <div class="row">
-    <div class="col-4"></div>
-    <div class="col-8">
+
+    <div class="col-3">
+        <nav>
+
+        </nav>
+    </div>
+
+    <div class="col-9">
+
         <div id="carousel1" class="carousel slide" data-ride="carousel">
 
             <div class="carousel-inner">
@@ -19,15 +23,17 @@
                 @foreach (var news in Model.FirstOrDefault().Skip(5).Take(5))
                 {
                     <div class="carousel-item">
-                        <div class="card border-light shadow p-3 mb-5 bg-white rounded">
+                        <div class="card text-center border-light shadow p-3 mb-5 bg-white rounded">
                             <img class="card-img-top" src="@news.ImgSrc" alt="Card image">
                             <div class="card-body">
                                 <h5 class="card-title"><a href="@news.Url">@news.Title</a></h5>
                                 <p class="card-text">@news.Discription</p>
-                                <p class="card-text text-right"><small class="text-muted">@news.PubDate</small></p>
+                                <p class="card-text text-right"><small class="text-muted">@news.PubDate.</small></p>
                             </div>
                         </div>
                     </div>
+
+
                 }
 
             </div>
@@ -43,4 +49,5 @@
             </a>
         </div>
     </div>
-    </div>
+
+</div>
