@@ -1,4 +1,4 @@
-﻿@model RssReader.Models.User
+﻿@model IEnumerable<RssReader.Models.Subscription>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,7 +25,7 @@
                 <tbody>
                     @if (Model != null)
                     {
-                        foreach (var subscription in Model.Subscriptions)
+                        foreach (var subscription in Model)
                         {
                             <tr>
                                 <td>@subscription.Title</td>

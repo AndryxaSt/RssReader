@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using RssReader.Models;
 
 namespace RssReader.Models
 {
@@ -19,9 +20,9 @@ namespace RssReader.Models
             return new DataBaseContext();
         }
 
-
         public DbSet<Subscription> Subscriptions { get; set; }
-        
+
+
 
     }
 }

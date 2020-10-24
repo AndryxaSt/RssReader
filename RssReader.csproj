@@ -280,15 +280,18 @@
     </Compile>
     <Compile Include="Models\DataBaseContext.cs" />
     <Compile Include="Models\EditModel.cs" />
+    <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\Subscription.cs" />
     <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\SubscriptionCategory.cs" />
+    <Compile Include="Models\SubscriptionRepository.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\IdentityUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\NinjectRegistration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

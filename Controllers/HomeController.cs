@@ -10,40 +10,37 @@ using System.IO;
 using RssReader.Models;
 using Microsoft.AspNet.Identity;
 using RssReader.Filters;
+using Ninject;
 
 namespace RssReader.Controllers
 {
     public class HomeController : Controller
     {
-        static DataBaseContext db;
+        IRepository repository;
 
-        private IEnumerable<Subscription> GetAllSubscriptions ()
+        public HomeController()
         {
-            string userId = User.Identity.GetUserId();
-            var currentUserSubscriptions = db.Users.Where(u => u.Id == userId).Include(s => s.Subscriptions).FirstOrDefault().Subscriptions.ToList<Subscription>();
-            return currentUserSubscriptions;
+        }
+        public HomeController(IRepository rep)
+        {
+            repository = rep;
         }
 
         [AuthFilter]
         public ActionResult Index()
         {
-            using (db = new DataBaseContext())
-            {
-                var currentUserSubscriptions = GetAllSubscriptions();
+            //repository = new SubscriptionRepository();
+            var currentUserSubscriptions = repository.ListSubscriptions(User.Identity.GetUserId());
+            return View(new Connection().GetRss(currentUserSubscriptions));
 
-                return View(new Connection().GetRss(currentUserSubscriptions));
-            }
         }
 
         [AuthFilter]
         public ActionResult News()
         {
-            using (db = new DataBaseContext())
-            {
-                var currentUserSubscriptions = GetAllSubscriptions();
+            var currentUserSubscriptions = repository.ListSubscriptions(User.Identity.GetUserId());
+            return View(new Connection().GetRss(currentUserSubscriptions));
 
-                return View(new Connection().GetRss(currentUserSubscriptions));
-            }
         }
     }
 }
