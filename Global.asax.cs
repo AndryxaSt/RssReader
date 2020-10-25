@@ -24,6 +24,7 @@ namespace RssReader
 
             NinjectModule registr = new NinjectRegistration();
             StandardKernel kernel = new StandardKernel(registr);
+            kernel.Unbind<ModelValidatorProvider>();
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }
